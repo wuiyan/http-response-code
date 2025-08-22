@@ -27,7 +27,7 @@
 
           <div class="overlay">
 
-            <button class="go-btn" type="button">前往 ▷</button>
+            <router-link class="go-btn" :to="{ name: 'detail', params: { code: card.code } }">前往 ▷</router-link>
 
           </div>
         </div>
