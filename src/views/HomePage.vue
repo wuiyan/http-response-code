@@ -26,18 +26,9 @@
           <img :alt="String(card.code)" :src="card.img" loading="lazy" @load="card.loaded = true" />
 
           <div class="overlay">
-            <div class="tag-row" v-if="card.tags?.length">
-              <span class="tag" v-for="tag in card.tags" :key="tag">{{ tag }}</span>
-            </div>
 
             <button class="go-btn" type="button">前往 ▷</button>
 
-            <div class="meta">
-              <span class="meta-item" v-if="card.meta?.stars">★ {{ card.meta.stars }}</span>
-              <span class="meta-item" v-if="card.meta?.views">👁 {{ card.meta.views }}</span>
-              <span class="meta-item" v-if="card.meta?.resolution">🖼 {{ card.meta.resolution }}</span>
-              <span class="meta-item" v-if="card.meta?.size">{{ card.meta.size }}</span>
-            </div>
           </div>
         </div>
       </div>
@@ -194,26 +185,11 @@ $easing: 220ms ease;
     position: absolute;
     inset: 0;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr ;
     padding: 16px;
     pointer-events: none;
 
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      @include fade-move(-8px);
-    }
-    .tag {
-      pointer-events: auto;
-      font-size: 12px;
-      color: #fff;
-      background: rgba(0,0,0,0.45);
-      padding: 6px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(4px);
-    }
+
     .go-btn {
       pointer-events: auto;
       justify-self: center;
@@ -230,24 +206,8 @@ $easing: 220ms ease;
       &:hover { background: #fff; }
       &:active { transform: translateY(0) scale(0.98); }
     }
-    .meta {
-      pointer-events: none;
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-      align-items: center;
-      font-size: 12px;
-      color: #fff;
-      padding: 8px 12px;
-      background: linear-gradient(180deg, rgba(204, 85, 85, 0) 0%, rgba(0,0,0,0.55) 85%);
-      border-bottom-left-radius: $radius-lg;
-      border-bottom-right-radius: $radius-lg;
-      @include fade-move(8px);
-      .meta-item { opacity: 0.9; }
-    }
 
-    // hover 联动
-    .tag-row, .meta { opacity: 0; }
+
   }
 
   &:hover {
