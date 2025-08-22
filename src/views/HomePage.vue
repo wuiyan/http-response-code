@@ -52,9 +52,9 @@ const usage = 'https://http.cat/[status_code]'
 const note = 'If you need an extension at the end of the URL just add .jpg.'
 
 const statusCards = ref([
-  { code: 100, title: 'Continue', img: 'https://http.cat/100.jpg', loaded: false, tags: ['自然背景','绿意'], meta: { stars: 218, views: 44482, resolution: '800x4500', size: '1.13 MB' } },
-  { code: 101, title: 'Switching Protocols', img: 'https://http.cat/101.jpg', loaded: false, tags: ['少年奔跑','山间风景','群山之间'], meta: { stars: 318, views: 12843, resolution: '2400x1350', size: '913 KB' } },
-  { code: 102, title: 'Processing', img: 'https://http.cat/102.jpg', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 100, title: 'Continue', img: 'src/assets/images/100.png', loaded: false, tags: ['自然背景','绿意'], meta: { stars: 218, views: 44482, resolution: '800x4500', size: '1.13 MB' } },
+  { code: 101, title: 'Switching Protocols', img: 'src/assets/images/101.png', loaded: false, tags: ['少年奔跑','山间风景','群山之间'], meta: { stars: 318, views: 12843, resolution: '2400x1350', size: '913 KB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
 ])
 
 // 预加载前三张，后续可扩展
