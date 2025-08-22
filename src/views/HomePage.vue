@@ -55,6 +55,13 @@ const statusCards = ref([
   { code: 100, title: 'Continue', img: 'src/assets/images/100.png', loaded: false, tags: ['自然背景','绿意'], meta: { stars: 218, views: 44482, resolution: '800x4500', size: '1.13 MB' } },
   { code: 101, title: 'Switching Protocols', img: 'src/assets/images/101.png', loaded: false, tags: ['少年奔跑','山间风景','群山之间'], meta: { stars: 318, views: 12843, resolution: '2400x1350', size: '913 KB' } },
   { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+  { code: 102, title: 'Processing', img: 'src/assets/images/102.png', loaded: false, tags: ['花海','黑金'], meta: { stars: 512, views: 99821, resolution: '3000x1800', size: '2.1 MB' } },
+
 ])
 
 // 预加载前三张，后续可扩展
@@ -75,7 +82,7 @@ function copyUsage() {
 // 变量
 $color-primary: #cf2f34;
 $color-card-bg: transparent;
-$bg-color: #0f1115;
+$bg-color: #37a1b4;
 $shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
 $shadow-lg: 0 6px 18px rgba(0,0,0,0.12);
 $radius-lg: 20px;
