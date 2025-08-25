@@ -1,16 +1,25 @@
 <template>
-  <div class="detail-page">
-    <div class="toolbar">
-      <button type="button" @click="goBack">返回</button>
-    </div>
-
-    <div class="content" v-if="code">
-      <h1>HTTP {{ code }}</h1>
-      <img v-if="imageSrc" :src="imageSrc" :alt="String(code)" />
-
-      <!-- 渲染 Markdown HTML -->
-      <div v-if="htmlContent" v-html="htmlContent"></div>
-      <div v-else>加载中...</div>
+  <div class="min-h-screen bg-blue-50 py-8 px-4 flex justify-center">
+    <div class="w-full max-w-4xl h-full bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
+      <div class="flex flex-col items-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">
+          {{ code }} {{ title }}
+        </h1>
+      </div>
+      <div v-if="code" class="flex flex-col items-center flex-1">
+        <img
+          v-if="imageSrc"
+          :src="imageSrc"
+          :alt="String(code)"
+          class="max-w-lg w-full rounded-xl shadow mb-8 bg-gray-100 object-contain"
+        />
+        <div
+          v-if="htmlContent"
+          class="prose prose-blue w-full max-w-none"
+          v-html="htmlContent"
+        ></div>
+        <div v-else class="text-gray-400 text-center py-8">加载中...</div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,13 +32,10 @@ import MarkdownIt from 'markdown-it'
 const route = useRoute()
 const router = useRouter()
 
-// 当前状态码
 const code = ref(route.params.code)
+const title = ref(route.query.title)
 
-// 图片路径
 const imageSrc = ref('')
-
-// Markdown 渲染
 const mdText = ref('')
 const htmlContent = ref('')
 const md = new MarkdownIt({
@@ -38,15 +44,11 @@ const md = new MarkdownIt({
   typographer: true
 })
 
-// 预加载所有 Markdown 文件（懒加载）
 const mdModules = import.meta.glob('@/assets/content/*.md', { as: 'raw' })
-// 预加载所有图片
 const imgModules = import.meta.glob('@/assets/images/*.png', { eager: true, import: 'default' })
 
-// 加载内容
 async function loadContent(newCode) {
   if (!newCode) return
-
   code.value = newCode
 
   // 加载 Markdown 文件
@@ -61,8 +63,6 @@ async function loadContent(newCode) {
   } else {
     mdText.value = `未找到文档：${newCode}`
   }
-
-  // 渲染 HTML
   htmlContent.value = md.render(mdText.value)
 
   // 加载图片
@@ -70,7 +70,6 @@ async function loadContent(newCode) {
   imageSrc.value = imgModules[imgKey] || ''
 }
 
-// 监听路由变化
 watch(
   () => route.params.code,
   (newCode) => loadContent(newCode),
@@ -85,9 +84,3 @@ function goBack() {
   }
 }
 </script>
-
-<style scoped>
-.detail-page { padding: 16px; }
-.toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
-.content img { max-width: min(100%, 720px); height: auto; display: block; margin-bottom: 16px; }
-</style>

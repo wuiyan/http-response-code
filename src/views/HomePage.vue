@@ -30,7 +30,7 @@
             <!-- overlay 按钮 -->
             <div class="absolute inset-0 grid place-items-center p-4">
               <router-link
-                :to="{ name: 'detail', params: { code: card.code } }"
+                :to="{ name: 'detail', params: { code: card.code }, query: { title: card.title } }"
                 class="opacity-0 translate-y-2 scale-95 transition-all duration-200 ease-in-out bg-white/95 text-gray-800 rounded-full px-5 py-2 shadow-lg group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 hover:bg-white"
               >
                 前往 ▷
