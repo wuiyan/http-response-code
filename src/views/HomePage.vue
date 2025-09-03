@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-5 min-h-screen pt-8">
+  <div class="flex flex-col gap-5 min-h-screen pt-20">
     <!-- header 简介 -->
     <header class="w-[92vw] max-w-[1280px] mx-auto mb-4 text-center">
       <h1 class="text-3xl font-bold text-gray-800 mb-4">HTTP 响应码图鉴</h1>
