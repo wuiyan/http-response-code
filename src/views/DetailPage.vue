@@ -58,6 +58,9 @@ async function loadContent(newCode) {
     const res = await fetch(mdUrl)
     if (res.ok) {
       mdText.value = await res.text()
+      if(mdText.value.includes('<!doctype html>')){
+        mdText.value = `文档编写中：${newCode}`
+      }
     } else {
       mdText.value = `文档编写中：${newCode}`
     }

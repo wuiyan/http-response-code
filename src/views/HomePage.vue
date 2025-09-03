@@ -18,15 +18,21 @@
           tabindex="0"
           class="flex flex-col bg-transparent overflow-hidden mb-4 rounded-2xl transition duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg group"
         >
-          <div class="relative overflow-hidden bg-transparent">
+          <div class="relative w-full aspect-square overflow-hidden">
             <img
               :alt="String(card.code)"
-              :src="card.img"
+              ref="imgs"
+              :data-src="card.img"
               loading="lazy"
               @load="card.loaded = true"
-              class="w-full h-auto object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
+              class="w-full h-full object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
             />
 
+            <!-- 占位符骨架 -->
+            <div
+              v-show="!card.loaded"
+              class="absolute inset-0 bg-gray-200 animate-pulse"
+            ></div>
             <!-- overlay 按钮 -->
             <div class="absolute inset-0 grid place-items-center p-4">
               <router-link
@@ -93,15 +99,29 @@ const statusCards = ref([
   { code: 511, title: 'Network Authentication Required', img: '/images/511.png', loaded: false}
 ])
 
-// 预加载前8张，后续可扩展
-onMounted(() => {
-  statusCards.value.slice(0, 8).forEach(item => {
-    const image = new Image()
-    image.onload = () => { item.loaded = true }
-    image.src = item.img
-  })
-})
+// 懒加载
+const imgs = ref([]) // 用来存放每个图片的 DOM
 
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.src = img.dataset.src
+          observer.unobserve(img)
+        }
+      })
+    },
+    {
+      root: null,
+      rootMargin: '100px',
+      threshold: 0.1
+    }
+  )
+
+  imgs.value.forEach(img => observer.observe(img))
+})
 </script>
 
 
