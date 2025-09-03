@@ -44,30 +44,32 @@ const md = new MarkdownIt({
   typographer: true
 })
 
-const mdModules = import.meta.glob('@/assets/content/*.md', { as: 'raw' })
-const imgModules = import.meta.glob('@/assets/images/*.png', { eager: true, import: 'default' })
 
 async function loadContent(newCode) {
   if (!newCode) return
   code.value = newCode
 
-  // 加载 Markdown 文件
-  const mdKey = `/src/assets/content/${newCode}.md`
-  if (mdModules[mdKey]) {
-    try {
-      mdText.value = await mdModules[mdKey]()
-    } catch (e) {
-      console.error('加载 Markdown 失败:', e)
+  // 图片路径（public 下直接访问）
+  imageSrc.value = `/images/${newCode}.png`
+
+  // Markdown 文件路径（public 下直接访问）
+  const mdUrl = `/content/${newCode}.md`
+  try {
+    const res = await fetch(mdUrl)
+    if (res.ok) {
+      mdText.value = await res.text()
+    } else {
       mdText.value = `文档编写中：${newCode}`
     }
-  } else {
+  } catch (e) {
+    console.error('加载 Markdown 失败:', e)
     mdText.value = `文档编写中：${newCode}`
   }
+
   htmlContent.value = md.render(mdText.value)
 
   // 加载图片
-  const imgKey = `/src/assets/images/${newCode}.png`
-  imageSrc.value = imgModules[imgKey] || ''
+  imageSrc.value = imageSrc.value = `/images/${newCode}.png`
 }
 
 watch(
