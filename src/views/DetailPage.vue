@@ -3,7 +3,7 @@
     <div class="w-full max-w-4xl h-full bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-center">
       <div class="flex flex-col items-center mb-8">
         <h1 class="text-3xl font-bold text-gray-800 text-center mb-2">
-          {{ code }} {{ title }}
+          HTTP {{ code }} {{ title }}
         </h1>
       </div>
       <div v-if="code" class="flex flex-col items-center flex-1">
@@ -13,12 +13,12 @@
           :alt="String(code)"
           class="max-w-lg w-full rounded-xl shadow mb-8 bg-gray-100 object-contain"
         />
-        <div
-          v-if="htmlContent"
-          class="prose prose-blue w-full max-w-none"
-          v-html="htmlContent"
-        ></div>
-        <div v-else class="text-gray-400 text-center py-8">加载中...</div>
+
+        <article v-if="htmlContent" v-html="htmlContent" 
+          class="prose prose-blue w-full max-w-none prose-pre:bg-blue-100/70 prose-code:text-black" >
+        </article>
+        <div v-else class="text-gray-500 text-center">加载中...</div>
+        
       </div>
     </div>
   </div>
@@ -58,10 +58,10 @@ async function loadContent(newCode) {
       mdText.value = await mdModules[mdKey]()
     } catch (e) {
       console.error('加载 Markdown 失败:', e)
-      mdText.value = `未找到文档：${newCode}`
+      mdText.value = `文档编写中：${newCode}`
     }
   } else {
-    mdText.value = `未找到文档：${newCode}`
+    mdText.value = `文档编写中：${newCode}`
   }
   htmlContent.value = md.render(mdText.value)
 

@@ -79,7 +79,7 @@ const statusCards = ref([
   { code: 408, title: 'Request Timeout', img: 'src/assets/images/408.png', loaded: false},
   { code: 409, title: 'Conflict', img: 'src/assets/images/409.png', loaded: false},
   { code: 410, title: 'Gone', img: 'src/assets/images/410.png', loaded: false},
-  { code: 418, title: "I'm a teapot (RFC 2324)", img: 'src/assets/images/418.png', loaded: false},
+  { code: 418, title: "I'm a teapot", img: 'src/assets/images/418.png', loaded: false},
   { code: 429, title: 'Too Many Requests', img: 'src/assets/images/429.png', loaded: false},
   { code: 500, title: 'Internal Server Error', img: 'src/assets/images/500.png', loaded: false},
   { code: 501, title: 'Not Implemented', img: 'src/assets/images/501.png', loaded: false},
